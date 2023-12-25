@@ -12,7 +12,7 @@ namespace assimp2c {
         auto importer = Assimp::Importer{};
         auto scene = importer.ReadFile(filename.data(), aiProcess_Triangulate | aiProcess_FlipUVs);
         if (scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
-            throw ReaderError {fmt::format("Failed to load model {}\n", filename)};
+            throw ReaderError {fmt::format("Error: Failed to load model {}\n", filename)};
         }
         ProcessNode(scene->mRootNode, scene);
     }

@@ -15,6 +15,8 @@ set(SOURCES
     src/main.cpp
     src/reader.cpp
     src/reader.h
+    src/writer.cpp
+    src/writer.h
 )
 
 add_executable(assimp2c ${SOURCES})

@@ -10,6 +10,7 @@
 #include <fmt/printf.h>
 
 #include "reader.h"
+#include "writer.h"
 
 static bool validateInput(const char*, const std::string& value) {
     return value.empty() ? false : true;
@@ -32,8 +33,17 @@ auto main(int argc, char* argv[]) -> int {
         return EXIT_FAILURE;
     }
 
+    auto path = std::filesystem::path(FLAGS_input);
+    auto parent_path_str = path.parent_path().c_str();
+    auto stem_str = path.stem().c_str();
+
     try {
         auto reader = assimp2c::Reader {FLAGS_input};
+        auto writer = assimp2c::Writer {stem_str};
+
+        writer.setVertices(reader.vertices());
+        writer.setIndices(reader.indices());
+        writer.Write(fmt::format("{}{}.h", parent_path_str, stem_str));
     } catch (const std::runtime_error& e) {
         fmt::print("Error: {}\n", e.what());
         return EXIT_FAILURE;
