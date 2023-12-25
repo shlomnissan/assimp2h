@@ -15,14 +15,16 @@ namespace assimp2c {
     public:
         explicit Reader(std::string_view filename);
 
+        auto vertices() const { return vertices_; }
+        auto indices() const { return indices_; }
+
     private:
-        std::vector<float> vertices_;
-        std::vector<unsigned int> indices_;
-        std::string error_;
+        std::vector<std::vector<float>> vertices_;
+        std::vector<std::vector<unsigned int>> indices_;
 
         auto ProcessNode(const aiNode* node, const aiScene* scene) -> void;
-        auto GetVertices(const aiMesh* mesh) -> void;
-        auto GetIndices(const aiMesh* mesh) -> void;
+        auto GetVertices(const aiMesh* mesh) const -> std::vector<float>;
+        auto GetIndices(const aiMesh* mesh) const -> std::vector<unsigned int>;
     };
 
     struct ReaderError : public std::runtime_error {
