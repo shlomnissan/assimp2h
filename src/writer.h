@@ -22,6 +22,9 @@ namespace assimp2c {
         std::string name_;
         std::vector<std::vector<float>> vertices_;
         std::vector<std::vector<unsigned int>> indices_;
+
+        auto WriteVertices(std::ofstream& fh) const -> void;
+        auto WriteIndices(std::ofstream& fh) const -> void;
     };
     
     struct WriterError : public std::runtime_error {

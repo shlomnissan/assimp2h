@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <filesystem>
+#include <fmt/core.h>
 #include <stdexcept>
 #include <string>
 
@@ -43,7 +44,10 @@ auto main(int argc, char* argv[]) -> int {
 
         writer.setVertices(reader.vertices());
         writer.setIndices(reader.indices());
-        writer.Write(fmt::format("{}{}.h", parent_path_str, stem_str));
+
+        auto output = fmt::format("{}{}.h", parent_path_str, stem_str);
+        fmt::print("Writing data to output file {}\n", output);
+        writer.Write(output);
     } catch (const std::runtime_error& e) {
         fmt::print("Error: {}\n", e.what());
         return EXIT_FAILURE;
