@@ -35,12 +35,12 @@ auto main(int argc, char* argv[]) -> int {
     }
 
     auto path = std::filesystem::path(FLAGS_input);
-    auto parent_path_str = path.parent_path().c_str();
-    auto stem_str = path.stem().c_str();
+    auto parent_path_str = path.parent_path().string();
+    auto stem_str = path.stem().string();
 
     try {
-        auto reader = assimp2c::Reader {FLAGS_input};
-        auto writer = assimp2c::Writer {stem_str};
+        auto reader = assimp2c::Reader(FLAGS_input);
+        auto writer = assimp2c::Writer(stem_str);
 
         writer.setVertices(reader.vertices());
         writer.setIndices(reader.indices());
