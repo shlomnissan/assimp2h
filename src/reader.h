@@ -10,7 +10,7 @@
 
 #include <assimp/scene.h>
 
-namespace assimp2c {
+namespace assimp2h {
     class Reader {
     public:
         explicit Reader(std::string_view filename);

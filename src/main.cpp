@@ -21,11 +21,11 @@ DEFINE_string(input, "", "The path to the 3D model");
 DEFINE_validator(input, &validateInput);
 
 auto main(int argc, char* argv[]) -> int {
-    fmt::print("ASSIMP2C - convert 3D models into C arrays using Assimp\n");
+    fmt::print("ASSIMP2H - convert 3D models into C++ vectors using Assimp\n");
     fmt::print("Copyright (c) 2024 Shlomi Nissan www.betamark.com\n\n");
 
     if (argc == 1) {
-        fmt::print("Usage: assimp2c --input <filename>\n");
+        fmt::print("Usage: assimp2h --input <filename>\n");
     }
     gflags::ParseCommandLineFlags(&argc, &argv, true);
 
@@ -39,8 +39,8 @@ auto main(int argc, char* argv[]) -> int {
     auto stem_str = path.stem().string();
 
     try {
-        auto reader = assimp2c::Reader(FLAGS_input);
-        auto writer = assimp2c::Writer(stem_str);
+        auto reader = assimp2h::Reader(FLAGS_input);
+        auto writer = assimp2h::Writer(stem_str);
 
         writer.setVertices(reader.vertices());
         writer.setIndices(reader.indices());

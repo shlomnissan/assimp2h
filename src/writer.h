@@ -8,7 +8,7 @@
 #include <string_view>
 #include <vector>
 
-namespace assimp2c {
+namespace assimp2h {
     class Writer {
     public:
         explicit Writer(std::string_view name);

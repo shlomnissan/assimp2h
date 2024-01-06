@@ -7,7 +7,7 @@
 #include <assimp/postprocess.h>
 #include <fmt/format.h>
 
-namespace assimp2c {
+namespace assimp2h {
     Reader::Reader(std::string_view filename) {
         auto importer = Assimp::Importer{};
         auto scene = importer.ReadFile(filename.data(), aiProcess_Triangulate | aiProcess_FlipUVs);
